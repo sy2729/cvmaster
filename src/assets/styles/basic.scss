@@ -1,0 +1,45 @@
+* {margin: 0;padding: 0;}
+// h1,h2,h3,h4,h5,h6 {}
+
+// color
+$defaultTheme: #C7393E;
+$border-light: #e4e4e4;
+
+// layout
+
+// flex
+.flex {
+    display: flex;
+}
+
+.flex-justify-center {
+    justify-content: center;
+}
+
+.flex-auto {
+    flex: auto;
+}
+.flex-1 {
+    flex: 1 1 auto;
+}
+
+
+// text
+.t-center {text-align: center;}
+
+// shape
+.center-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid $border-light;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
+
+.content {padding: 25px;}
