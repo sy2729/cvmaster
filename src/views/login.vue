@@ -2,6 +2,7 @@
   <div>
     <transition name="alert">
     <v-alert v-if="loading" alertText="Log In"></v-alert>
+    <v-alert v-if="userNameWrong" alertText="Username format wrong"></v-alert>
     </transition>
     <div class="center-box flex flex-justify-center login">
         <div class="cover">
@@ -24,20 +25,30 @@
 import vInput from "@/components/basic/input.vue";
 import vButton from "@/components/basic/button.vue";
 import vAlert from "@/components/basic/alert.vue";
+import { validate } from '@/components/mixins/formValidation';
 
 export default {
   data(){
     return {
-      url:'https://cdn.dribbble.com/users/78489/screenshots/4966994/ramin_nasibov_logo__svrf_branding_logofolio_.png',
+      url:'https://cdn.dribbble.com/users/329207/screenshots/5104800/2009_oldetowne_dribbble.jpg',
       username: undefined,
       password: undefined,
       loading: false,
+      userNameWrong: false
     }
   },
+  mixins: [validate],
   methods:{
     submit(){
-      this.loading = true;
-      // alert('submit' + this.username)  
+      // check the username format
+      this.userNameWrong = this.checkName(this.username);
+      // check the password
+      if(this.userNameWrong === false) {
+        this.loading = true;
+        // check the password from database:
+
+      } 
+      
     }
   },
 

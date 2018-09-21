@@ -1,7 +1,7 @@
 <template>
     <div class="input-wrap">
         <span>{{inputTitle}}</span>
-        <input :placeholder="inputTitle" :type="inputType" @input="$emit('input', $event.target.value)" :value="value">
+        <input :placeholder="inputTitle" :type="inputType" @input="$emit('input', $event.target.value)" :value="value" @focus="$emit('focus')">
     </div>
 </template>
 

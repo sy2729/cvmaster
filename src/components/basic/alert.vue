@@ -54,9 +54,12 @@ export default {
         }
 
         .text {
-            padding: 0 5px;
+            padding: 0 25px;
             min-width: 150px;
             border-radius: 0 4px 4px 0;
+            min-width: 200px;
+            display: flex;
+            justify-content: center;
 
             &.loading {
                 color: $loading;
