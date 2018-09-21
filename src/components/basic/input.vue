@@ -7,7 +7,7 @@
 
 <script>
 export default {
-    name: 'VInput',
+    name: 'vInput',
     props: {
         inputType: {
             type: String,
@@ -32,7 +32,7 @@ export default {
     input {
         font-size: inherit;
         border: 1px solid $border-light;
-        height: 25px;
+        height: 35px;
         padding: 4px;
         vertical-align: middle;
         flex: auto;

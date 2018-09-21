@@ -1,5 +1,5 @@
 <template>
-    <button :class="getClass(buttonType)" @click="$emit('click')">{{buttonText}}</button>
+    <button :class="buttonType" @click="$emit('click')">{{buttonText}}</button>
 </template>
 
 <script>
@@ -15,11 +15,20 @@ export default {
             default: 'button'
         }
     },
-    methods: {
-        getClass() {
-            return 'primary'
-        }
-    }
+    // methods: {
+    //     getClass(data) {
+    //         switch(data) {
+    //             case 'x':
+    //                 code block
+    //                 break;
+    //             case y:
+    //                 code block
+    //                 break;
+    //             default:
+    //                 code block
+    //         }
+    //     }
+    // }
 }
 </script>
 
@@ -38,7 +47,15 @@ export default {
     button:hover {box-shadow: 2px 2px 6px 0 rgba(100,100,100,.3);}
 
     button.primary {
+        background: $primary;
+        color: #fff;
+    }
+    button.danger {
         background: $defaultTheme;
+        color: #fff;
+    }
+    button.success {
+        background: $success;
         color: #fff;
     }
 

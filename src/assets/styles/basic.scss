@@ -1,9 +1,12 @@
-* {margin: 0;padding: 0;}
+* {margin: 0;padding: 0; box-sizing: border-box;}
 // h1,h2,h3,h4,h5,h6 {}
 
 // color
 $defaultTheme: #C7393E;
 $border-light: #e4e4e4;
+$loading: #FCAE03;
+$primary: #263E6D;
+$success: rgb(152, 211, 24);
 
 // layout
 .dis-20 {margin: 20px 0;}
@@ -17,6 +20,9 @@ $border-light: #e4e4e4;
 
 .flex-justify-center {
     justify-content: center;
+}
+.flex-align-center {
+    align-items: center;
 }
 
 .flex-auto {
