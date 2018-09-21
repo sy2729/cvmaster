@@ -1,6 +1,7 @@
 <template>
-    <div>
-        <span>{{inputTitle}}</span><input :type="inputType">
+    <div class="input-wrap">
+        <span>{{inputTitle}}</span>
+        <input :placeholder="inputTitle" :type="inputType" @input="$emit('input', $event.target.value)" :value="value">
     </div>
 </template>
 
@@ -13,12 +14,30 @@ export default {
             default: "text",
         },
         inputTitle: String,
+        value: {
+            type: String,
+        }
 
     }
 }
 </script>
 
 <style lang="scss" scoped>
+    .input-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        span {margin-right: 5px;}
+    }
+    input {
+        font-size: inherit;
+        border: 1px solid $border-light;
+        height: 25px;
+        padding: 4px;
+        vertical-align: middle;
+        flex: auto;
+    }
 
+    input:focus {outline: none;}
 </style>
 

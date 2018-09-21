@@ -4,13 +4,14 @@
         <img :src="url" alt="img">
       </div>
       <div class='content flex-auto'>
-          <h1 class="t-center">Log In</h1>
+          <h1 class="t-center">Register</h1>
           <form action="">
             <v-input input-title='Username' class="dis-30" v-model=username></v-input>
             <v-input input-title='Passwords' input-type="password" class="dis-30" v-model=password></v-input>
-            <v-button button-type="" button-text="Log In" class="btn-full-width dis-40" @click=submit></v-button>
+            <v-input input-title='Confirm' input-type="password" class="dis-30" v-model=passwordSecond></v-input>
+            <v-button button-type="" button-text="Register" class="btn-full-width dis-40" @click=submit></v-button>
           </form>
-          <router-link to="/register">Don't have account? Register</router-link>
+          <router-link to="/login">Already have account? Log In</router-link>
       </div>
   </div>
 </template>
@@ -25,6 +26,7 @@ export default {
       url:'https://cdn.dribbble.com/users/78489/screenshots/4966994/ramin_nasibov_logo__svrf_branding_logofolio_.png',
       username: undefined,
       password: undefined,
+      passwordSecond: undefined,
     }
   },
   methods:{
@@ -48,7 +50,6 @@ export default {
     min-width: 350px;
     width: 60%;
     max-width: 700px;
-    // height: 400px;
   }
 
   .cover {
