@@ -174,7 +174,7 @@ export default {
 <style lang="scss">
   
   .login {
-    min-width: 350px;
+    min-width: 300px;
     width: 60%;
     max-width: 700px;
     background: #f4f4f4;

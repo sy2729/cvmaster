@@ -101,9 +101,10 @@ export default {
 <style lang="scss">
   
   .login {
-    min-width: 350px;
+    min-width: 300px;
     width: 60%;
     max-width: 700px;
+    background: #f4f4f4;
     // height: 400px;
   }
 
@@ -121,7 +122,13 @@ export default {
 
   @media screen and (max-width: 800px){
     .cover {display: none;}
+    body {
+        height: 100vh;
+        background: url(https://cdn.dribbble.com/users/329207/screenshots/5104800/2009_oldetowne_dribbble.jpg) no-repeat;
+        background-size: cover; 
+    }
   }
+  
 
 .alert-enter-active, .alert-leave-active {
   transform:  translateX(-50%) translateY(10px) !important;
