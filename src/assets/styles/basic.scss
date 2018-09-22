@@ -36,6 +36,11 @@ $success: rgb(152, 211, 24);
 // text
 .t-center {text-align: center;}
 
+// border
+@mixin border($color) {
+    border: 1px solid $color;
+}
+
 // shape
 .center-box {
     position: absolute;
@@ -52,3 +57,12 @@ img {
 }
 
 .content {padding: 25px;}
+
+// animation
+@mixin animation($name) {
+          animation: $name 3s alternate infinite;
+}
+@keyframes scale {
+    from {transform: scale(1);}
+    to {transform: scale(1.1);}
+}

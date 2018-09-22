@@ -2,12 +2,13 @@
   <div>
     <transition name="alert">
         <v-alert v-if="loading" alertText="Registering"></v-alert>
-    </transition>
-    <transition name="alert">
-        <v-alert v-if="userNameWrong" alertText="Username format wrong"></v-alert>
-    </transition>
-    <transition name="alert">
-        <v-alert v-if="!passwordConsistent" alertText="Password Inconsistent"></v-alert>
+    <!-- </transition> -->
+    <!-- <transition name="alert"> -->
+        <v-alert v-if="userNameWrong" alertText="Username format wrong" alertType="error"></v-alert>
+    <!-- </transition> -->
+    <!-- <transition name="alert"> -->
+        <v-alert v-if="!passwordFormateRight" alertText="Password Format Wrong" alertType="error"></v-alert>
+        <v-alert v-if="!passwordConsistent" alertText="Password Inconsistent" alertType="success"></v-alert>
     </transition>
 
     <div class="center-box flex flex-justify-center login">
@@ -46,12 +47,15 @@ export default {
   data(){
     return {
       url:'https://cdn.dribbble.com/users/329207/screenshots/5284186/bemocs_db_dribbble_02_trail_angel.jpg',
-      username: undefined,
-      password: undefined,
-      passwordSecond: undefined,
+      username: '',
+      password: '',
+      passwordSecond: '',
+//   state used to check
       loading: false,
       userNameWrong: false,
       passwordConsistent: true,
+      passwordFormateRight: true,
+// state used to alert
       nameFormatPrompt: false,
       passwordFormatPrompt: false,
       nameFormat: ['Use your email to register'],
@@ -67,12 +71,20 @@ export default {
     submit(){
         // check the username format
         this.userNameWrong = this.checkName(this.username);
+        if(this.userNameWrong){return}
+
         // check the password format
+        this.passwordFormateRight = this.checkPassword(this.password);
+        if(!this.passwordFormateRight){return}
+
+        // check password consistency
         this.passwordConsistent = this.checkPasswordConsistency(this.password, this.passwordSecond);
-        
+        if(!this.passwordConsistent){return}
+
         // register in database
-        if(!this.userNameWrong && this.passwordConsistent) {
+        if(!this.userNameWrong && this.checkPassword(this.password) && this.passwordConsistent) {
             this.loading = true;
+            // this.registerData(this.username, this.password);
         }
     
     },
@@ -89,17 +101,27 @@ export default {
 
     inputUsername(data) {
         this.username = data;
-        if(!this.checkName(data)) {this.clearPrompt();}
+        if(!this.checkName(data)) {this.clearPrompt(); this.clearAlert()}
     },
 
     inputPassword(data) {
         this.password = data;
-        if(this.checkPassword(data)) {this.clearPrompt();}
+        if(this.checkPassword(data)) {
+            this.clearPrompt();
+            this.clearAlert();
+        }
     },
     
     clearPrompt(){
         this.nameFormatPrompt = false;
         this.passwordFormatPrompt = false;
+    },
+
+    clearAlert(){
+      this.loading = false;
+      this.userNameWrong = false;
+      this.passwordConsistent = true;
+      this.passwordFormateRight = true;
     }
     
   },
@@ -121,15 +143,28 @@ export default {
     min-width: 350px;
     width: 60%;
     max-width: 700px;
+    background: #f4f4f4;
   }
 
   .cover {
     width: 40%;
     min-width: 150px;
+    overflow: hidden;
+
+    img {
+        // animation: scale 4s alternate infinite;
+        @include animation(scale);
+        animation-duration: 6s;
+    }
   }
 
   @media screen and (max-width: 800px){
     .cover {display: none;}
+    body {
+        height: 100vh;
+        background: url(https://cdn.dribbble.com/users/329207/screenshots/5284186/bemocs_db_dribbble_02_trail_angel.jpg) no-repeat !important;
+        background-size: cover !important; 
+    }
   }
   @media screen and (max-width: 1200px){
     .prompt-wrap {

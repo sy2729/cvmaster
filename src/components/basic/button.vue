@@ -39,7 +39,7 @@ export default {
         border: none;
         text-align: center;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 16px;
         border-radius: 3px;
         // margin: 30px 0;
     }

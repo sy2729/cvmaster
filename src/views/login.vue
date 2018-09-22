@@ -74,6 +74,13 @@ export default {
   .cover {
     width: 40%;
     min-width: 150px;
+    overflow: hidden;
+
+    img {
+        // animation: scale 4s alternate infinite;
+        @include animation(scale);
+        animation-duration: 6s;
+    }
   }
 
   @media screen and (max-width: 800px){

@@ -8,7 +8,7 @@ export const validate = {
         },
 
         checkPassword(data) {
-            return data.length > 6 && data[0] === data[0].toUpperCase();
+            return data.length > 6 && data[0] === data[0].toUpperCase() && /[a-z]\d/.test(data);
         }
     }
 }

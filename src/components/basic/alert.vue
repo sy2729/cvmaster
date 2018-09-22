@@ -1,7 +1,7 @@
 <template>
     <div class="alert-wrap">
-        <span class="icon loading"></span>
-        <span class="text flex flex-align-center flex-justify-center loading">{{alertText}}</span>
+        <span :class="['icon', alertType]"></span>
+        <span :class="['text', 'flex', 'flex-align-center', 'flex-justify-center', alertType]">{{alertText}}</span>
     </div>
 </template>
 
@@ -12,6 +12,10 @@ export default {
         alertText: {
             type: String,
             default: 'alert'
+        },
+        alertType: {
+            type: String,
+            default: 'loading'
         }
     }
 }
@@ -29,10 +33,10 @@ export default {
 
         .icon{
             border-radius: 4px 0 0 4px;
+            width: 30px;
+            position: relative;
             &.loading {
-                width: 30px;
                 background: $loading;
-                position: relative;
                 &:before {
                     content: '';
                     position: absolute;
@@ -51,6 +55,56 @@ export default {
                     to{transform: scale(0.6) rotate(360deg);}   
                 }
             }
+
+            &.error {
+                background: $defaultTheme;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    top: 0;
+                    transform: rotate(45deg) scale(0.9);
+                    background: #fff;
+                    width: 3px;
+                    height: 100%;
+                }
+                &:after {
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    top: 0;
+                    transform: rotate(-45deg) scale(0.9);
+                    background: #fff;
+                    width: 3px;
+                    height: 100%;
+                }
+            }
+
+            &.success {
+                background: $success;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    top: 0;
+                    bottom: 0;
+                    transform: rotate(45deg) scale(0.9);
+                    background: #fff;
+                    width: 3px;
+                    height: 60%;
+                }
+                &:after {
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    top: 0;
+                    transform: rotate(-45deg) scale(0.9);
+                    background: #fff;
+                    width: 3px;
+                    height: 100%;
+                }
+                
+            }
         }
 
         .text {
@@ -60,10 +114,23 @@ export default {
             min-width: 200px;
             display: flex;
             justify-content: center;
+            color: #fefefe;
 
             &.loading {
-                color: $loading;
-                border: 1px solid $loading;
+                background: $loading;
+                @include border($loading)
+            }
+
+            &.error {
+                background: $defaultTheme;
+                // color: $defaultTheme;
+                @include border($defaultTheme)
+            }
+
+            &.success {
+                background: $success;
+                // color: $success;
+                @include border($success)
             }
         }
     }
