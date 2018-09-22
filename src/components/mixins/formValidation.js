@@ -1,5 +1,8 @@
 export const validate = {
     methods: {
+        checkNull(data) {
+            return data === '';
+        },
         checkName(data){
             return data.indexOf('@') === -1
         },

@@ -57,7 +57,7 @@ export default {
             }
 
             &.error {
-                background: $defaultTheme;
+                background: $error;
                 &:before {
                     content: '';
                     position: absolute;
@@ -122,9 +122,9 @@ export default {
             }
 
             &.error {
-                background: $defaultTheme;
+                background: $error;
                 // color: $defaultTheme;
-                @include border($defaultTheme)
+                @include border($error)
             }
 
             &.success {

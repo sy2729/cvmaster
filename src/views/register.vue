@@ -3,6 +3,7 @@
     <transition name="alert">
         <v-alert v-if="success" alertText="Successfuly Registered" alertType="success"></v-alert>
         <v-alert v-if="loading" alertText="Registering"></v-alert>
+        <v-alert v-if="inputNull" alert-text="Must Fill Out All" alertType="error"></v-alert>
         <v-alert v-if="userNameWrong" alertText="Username format wrong" alertType="error"></v-alert>
         <v-alert v-if="!passwordFormateRight" alertText="Password Format Wrong" alertType="error"></v-alert>
         <v-alert v-if="!passwordConsistent" alertText="Password Inconsistent" alertType="error"></v-alert>
@@ -16,6 +17,7 @@
         <div class='content flex-auto'>
             <h1 class="t-center">Register</h1>
             <form action="">
+                <v-input input-title='Name' class="dis-30" v-model=name></v-input>
                 <v-input input-title='Email' class="dis-30" :bind=username @input="inputUsername($event)" @focus="showNamePrompt"></v-input>
                 <v-input input-title='Passwords' input-type="password" class="dis-30" v-model=password @focus="showPasswordPrompt" :bind=password @input="inputPassword($event)"></v-input>
                 <v-input input-title='Confirm' input-type="password" class="dis-30" v-model=passwordSecond @focus="clearPrompt"></v-input>
@@ -45,10 +47,12 @@ export default {
   data(){
     return {
       url:'https://cdn.dribbble.com/users/329207/screenshots/5284186/bemocs_db_dribbble_02_trail_angel.jpg',
+      name: '',
       username: '',
       password: '',
       passwordSecond: '',
-//   state used to check
+//   state used to alert
+      inputNull: false,
       loading: false,
       userNameWrong: false,
       passwordConsistent: true,
@@ -70,6 +74,10 @@ export default {
   mixins: [validate],
   methods:{
     submit(){
+        // make sure no empty value
+        this.inputNull = this.checkInputEmpty();
+        if(this.inputNull){return}
+
         // check the username format
         this.userNameWrong = this.checkName(this.username);
         if(this.userNameWrong){return}
@@ -85,9 +93,13 @@ export default {
         // register in database
         if(!this.userNameWrong && this.checkPassword(this.password) && this.passwordConsistent) {
             this.loading = true;
-            this.createUser(this.username, this.password);
+            this.createUser(this.name, this.username, this.password);
         }
     
+    },
+
+    checkInputEmpty(){
+        return this.checkNull(this.name) || this.checkNull(this.username) || this.checkNull(this.password) || this.checkNull(this.passwordSecond)
     },
 
     showNamePrompt(){
@@ -119,12 +131,13 @@ export default {
     },
 
     clearAlert(){
+      this.inputNull = false;
       this.loading = false;
       this.userNameWrong = false;
       this.passwordConsistent = true;
       this.passwordFormateRight = true;
     },
-    createUser(name, key) {
+    createUser(name, email, key) {
         console.log('creating user')
             // 新建 AVUser 对象实例
             var user = new this.AV.User();
@@ -133,7 +146,7 @@ export default {
             // 设置密码
             user.setPassword(key);
             // 设置邮箱
-            user.setEmail(name);
+            user.setEmail(email);
             user.signUp().then((loggedInUser)=>{
                 this.loading = false;
                 this.success = true;
