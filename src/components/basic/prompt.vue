@@ -2,7 +2,7 @@
     <div class="prompt">
         <!-- <div v-if='typeof prompt ===Array'> -->
             <ul>
-                <li v-for='i in prompt'>{{i}}</li>
+                <li v-for='(i, index) in prompt' :key=index>{{i}}</li>
             </ul>
         <!-- </div> -->
 

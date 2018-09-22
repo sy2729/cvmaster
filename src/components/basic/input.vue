@@ -27,7 +27,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        span {margin-right: 5px;}
+        span {margin-right: 5px; min-width: 80px; text-align: right;}
     }
     input {
         font-size: inherit;

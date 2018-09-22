@@ -11,7 +11,7 @@
         <div class='content flex-auto'>
             <h1 class="t-center">Log In</h1>
             <form action="">
-              <v-input input-title='Username' class="dis-30" v-model=username></v-input>
+              <v-input input-title='Email' class="dis-30" v-model=username></v-input>
               <v-input input-title='Passwords' input-type="password" class="dis-30" v-model=password></v-input>
               <v-button button-text="Log In" class="btn-full-width dis-40" @click=submit></v-button>
             </form>

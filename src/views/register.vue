@@ -1,14 +1,12 @@
 <template>
   <div>
     <transition name="alert">
+        <v-alert v-if="success" alertText="Successfuly Registered" alertType="success"></v-alert>
         <v-alert v-if="loading" alertText="Registering"></v-alert>
-    <!-- </transition> -->
-    <!-- <transition name="alert"> -->
         <v-alert v-if="userNameWrong" alertText="Username format wrong" alertType="error"></v-alert>
-    <!-- </transition> -->
-    <!-- <transition name="alert"> -->
         <v-alert v-if="!passwordFormateRight" alertText="Password Format Wrong" alertType="error"></v-alert>
-        <v-alert v-if="!passwordConsistent" alertText="Password Inconsistent" alertType="success"></v-alert>
+        <v-alert v-if="!passwordConsistent" alertText="Password Inconsistent" alertType="error"></v-alert>
+        <v-alert v-if="serverError" :alert-text="serverErrorMessage" alertType="error"></v-alert>
     </transition>
 
     <div class="center-box flex flex-justify-center login">
@@ -18,7 +16,7 @@
         <div class='content flex-auto'>
             <h1 class="t-center">Register</h1>
             <form action="">
-                <v-input input-title='Username' class="dis-30" :bind=username @input="inputUsername($event)" @focus="showNamePrompt"></v-input>
+                <v-input input-title='Email' class="dis-30" :bind=username @input="inputUsername($event)" @focus="showNamePrompt"></v-input>
                 <v-input input-title='Passwords' input-type="password" class="dis-30" v-model=password @focus="showPasswordPrompt" :bind=password @input="inputPassword($event)"></v-input>
                 <v-input input-title='Confirm' input-type="password" class="dis-30" v-model=passwordSecond @focus="clearPrompt"></v-input>
                 <v-button button-type="success" button-text="Register" class="btn-full-width dis-40" @click=submit></v-button>
@@ -55,7 +53,10 @@ export default {
       userNameWrong: false,
       passwordConsistent: true,
       passwordFormateRight: true,
-// state used to alert
+      success: false,
+      serverError: false,
+      serverErrorMessage: '',
+// state used to prompt
       nameFormatPrompt: false,
       passwordFormatPrompt: false,
       nameFormat: ['Use your email to register'],
@@ -84,7 +85,7 @@ export default {
         // register in database
         if(!this.userNameWrong && this.checkPassword(this.password) && this.passwordConsistent) {
             this.loading = true;
-            // this.registerData(this.username, this.password);
+            this.createUser(this.username, this.password);
         }
     
     },
@@ -122,7 +123,27 @@ export default {
       this.userNameWrong = false;
       this.passwordConsistent = true;
       this.passwordFormateRight = true;
-    }
+    },
+    createUser(name, key) {
+        console.log('creating user')
+            // 新建 AVUser 对象实例
+            var user = new this.AV.User();
+            // 设置用户名
+            user.setUsername(name);
+            // 设置密码
+            user.setPassword(key);
+            // 设置邮箱
+            user.setEmail(name);
+            user.signUp().then((loggedInUser)=>{
+                this.loading = false;
+                this.success = true;
+                this.$router.push('./');
+            }, (error)=>{
+                this.clearAlert();
+                this.serverErrorMessage = error.rawMessage;
+                this.serverError = true;
+        });
+    },
     
   },
 
