@@ -166,6 +166,9 @@ export default {
     vButton,
     vAlert,
     prompt,
+  },
+  created(){
+    this.changeBackground(this);
   }
 }
 </script>

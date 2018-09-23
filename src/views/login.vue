@@ -93,6 +93,9 @@ export default {
     vInput,
     vButton,
     vAlert
+  },
+  created(){
+    this.changeBackground(this);
   }
 }
 </script>

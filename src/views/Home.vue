@@ -41,14 +41,19 @@ export default {
     // console.log(currentUser)
     if(currentUser){this.user = {...currentUser.attributes, id: currentUser.id}};
     
+    if(this.$router.currentRoute.name === 'home'){
+      document.body.classList.add('home');
+    }
   }
 }
 </script>
 
 <style lang="scss">
   body {
-    background: #FEFFFF !important;
-    height: unset !important;
+    &.home {
+      background: #FEFFFF !important;
+      height: unset !important;
+    }
   }
 </style>
 

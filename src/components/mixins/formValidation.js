@@ -12,6 +12,12 @@ export const validate = {
 
         checkPassword(data) {
             return data.length > 6 && data[0] === data[0].toUpperCase() && /[a-z]\d/.test(data);
+        },
+
+        changeBackground(obj){
+            if(obj.$router.currentRoute.name !== 'home'){
+                document.body.classList.remove('home');
+            }
         }
     },
 
