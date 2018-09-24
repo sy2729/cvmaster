@@ -18,7 +18,14 @@ export const validate = {
             if(obj.$router.currentRoute.name !== 'home'){
                 document.body.classList.remove('home');
             }
-        }
+        },
+        getUser() {
+            var currentUser = this.AV.User.current();
+            if(currentUser){
+                this.user = {...currentUser.attributes, id: currentUser.id}
+                this.$router.push({ path: '/user', query: { id: this.user.id }})
+            };
+        },
     },
 
     created(){

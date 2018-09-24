@@ -168,6 +168,7 @@ export default {
     prompt,
   },
   created(){
+    this.getUser();
     this.changeBackground(this);
   }
 }

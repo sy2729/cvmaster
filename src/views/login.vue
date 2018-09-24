@@ -70,7 +70,7 @@ export default {
         this.clearAlert();
         this.success = true;
         console.log(loggedInUser);
-        this.$router.push('/')
+        // this.$router.push({ path: `/user/${userId}` })
       }, (error)=> {
         this.alert.serverErrorMessage = error.rawMessage;
         this.alert.serverError = true;
@@ -95,6 +95,7 @@ export default {
     vAlert
   },
   created(){
+    this.getUser();
     this.changeBackground(this);
   }
 }
