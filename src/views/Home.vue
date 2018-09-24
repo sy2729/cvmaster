@@ -1,18 +1,22 @@
 <template>
   <div class="home">
+    <v-nav :user = user></v-nav>
     <div v-if="user">
       Welcome, {{user.username}} <br>
     </div>
     <button @click="logout" v-if="user">Log out</button>
-    <router-link to="/login" v-if="!user">Login</router-link><br>
-    <router-link to="/register" v-if="!user">Sign Up</router-link>
+    <home-header></home-header>
+    <home-body></home-body>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 let AV = require('leancloud-storage');
-// import HelloWorld from '@/components/HelloWorld.vue'
+// import fontawesome from '@fortawesome/fontawesome-free'
+import vNav from '@/components/vNav.vue'
+import homeHeader from '@/components/home-header.vue'
+import homeBody from '@/components/home-body.vue'
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 
@@ -33,6 +37,9 @@ export default {
     }
   },
   components: {
+    vNav,
+    homeHeader,
+    homeBody,
     // HelloWorld
   },
 
@@ -54,6 +61,7 @@ export default {
       background: #FEFFFF !important;
       height: unset !important;
     }
+
   }
 </style>
 

@@ -1,4 +1,6 @@
 * {margin: 0;padding: 0; box-sizing: border-box;}
+a {text-decoration: none;}
+p {line-height: 1.5em;}
 // h1,h2,h3,h4,h5,h6 {}
 
 // color
@@ -26,6 +28,9 @@ $success: rgb(152, 211, 24);
     align-items: center;
 }
 
+.flex-wrap {
+    flex-wrap: wrap;
+}
 .flex-auto {
     flex: auto;
 }
@@ -53,8 +58,7 @@ $success: rgb(152, 211, 24);
 
 img {
     width: 100%;
-    object-fit: cover;
-    height: 100%;
+    
 }
 
 .content {padding: 25px;}

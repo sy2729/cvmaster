@@ -120,6 +120,8 @@ export default {
         // animation: scale 4s alternate infinite;
         @include animation(scale);
         animation-duration: 6s;
+        object-fit: cover;
+        height: 100%;
     }
   }
 

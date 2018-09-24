@@ -2,6 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
+// fontawesom import and init
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+Vue.config.productionTip = false
+
+
 // initialize leanCloud
 var AV = require('leancloud-storage');
 var { Query, User } = AV;
