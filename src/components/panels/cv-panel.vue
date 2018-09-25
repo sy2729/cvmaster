@@ -68,7 +68,6 @@ export default {
             });
             userTemplates.save().then((i)=>{
                 let templateData = {...i.attributes, id: i.id};
-                // console.log(templateData)
                 this.$emit('add-template', templateData);
 
                 this.templateChoosePanel = false;
@@ -111,11 +110,6 @@ export default {
     components: {
         vButton,
     },
-    // watch:{
-    //     user: function(newVal, oldVal) { // watch it
-    //       console.log('Prop changed: ', newVal, ' | was: ', oldVal)
-    //     }
-    // }
 }
 </script>
 

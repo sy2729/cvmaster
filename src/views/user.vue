@@ -33,11 +33,14 @@ export default {
              query.equalTo('userId', this.user.id);
               query.find().then((data)=>{
                 if(data) {
-                    this.user.templates = [];
-                    data.forEach((i)=>{
-                        let templatesData = {...i.attributes, id: i.id};
-                        this.user.templates.push(templatesData);
-                    })
+                    let templates = [];
+                    for(let i = 0; i < data.length; i++) {
+                        let templatesData = {...data[i].attributes, id: data[i].id};
+                        templates.push(templatesData);
+                        // this.$set(this.user.templates, i, {...data[i].attributes, id: data[i].id});
+                        //  this.user.templates[i] = {...data[i].attributes, id: data[i].id};
+                    }
+                    this.$set(this.user, 'templates', templates)
                 }
             });
         },
