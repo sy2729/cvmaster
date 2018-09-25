@@ -24,18 +24,17 @@ export default new Router({
     {
       path: '/register',
       name: 'register',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/register.vue')
     },
     {
       path: '/user',
       name: 'user',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/user.vue')
+    },
+    {
+      path: '/user/template1',
+      name: 'template1',
+      component: () => import(/* webpackChunkName: "about" */ './components/templates/template1.vue')
     }
   ]
 })

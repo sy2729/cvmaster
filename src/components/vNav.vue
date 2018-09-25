@@ -33,6 +33,7 @@ export default {
             AV.User.logOut().then(()=>{
                 this.$props.user = null;  //not sure about this
                 this.showMenu = false;
+                this.$router.push('/')
             });
             alert('logged out')
         }

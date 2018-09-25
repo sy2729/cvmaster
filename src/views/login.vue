@@ -69,8 +69,7 @@ export default {
       .then((loggedInUser)=> {
         this.clearAlert();
         this.success = true;
-        console.log(loggedInUser);
-        // this.$router.push({ path: `/user/${userId}` })
+        this.getUser();
       }, (error)=> {
         this.alert.serverErrorMessage = error.rawMessage;
         this.alert.serverError = true;

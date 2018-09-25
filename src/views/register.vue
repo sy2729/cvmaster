@@ -230,14 +230,6 @@ export default {
       height: 100px;
   }
 
-  .prompt-enter-active, .prompt-leave-active {
-    transition: all .5s;
-    
-  }
-  .prompt-enter, .prompt-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
-  }
-
 
 </style>
 
