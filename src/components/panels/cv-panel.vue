@@ -1,13 +1,13 @@
 <template>
     <div>
-        <!-- <div class="full-size flex flex-justify-center flex-align-center" v-if='!user.templates'>
+        <div class="full-size flex flex-justify-center flex-align-center" v-if='user.templates === []'>
             <v-button class='create-when-null' button-type='primary' button-text="There is no record yet, creat your first one +" @click=createRecord></v-button>
-        </div> -->
-        <div class="full-size template-choose-panel flex flex-wrap templates-display">
-                <div class="each-template" v-for="(i, index) in user.templates" :key='i.id' @click='choseTemplate(i, index)'>
+        </div>
+        <div class="full-size template-choose-panel flex flex-wrap templates-display" v-else>
+                <div class="each-template" v-for="(i, index) in user.templates" :key='i.id' @click='goToTemplate(i, index)'>
                     <div class="bottom-bar">
                         <span>{{i.name}}</span>
-                        <a :href="i.link" >{{i.author}}</a>
+                        <a :href="i.link" >link</a>
                     </div>
                 </div>  
                 <div class="each-template add-template-in-display" @click=createRecord>
@@ -88,6 +88,9 @@ export default {
             //         this.$router.push({path: `/user/template${index+1}`, query: { id: this.$props.user.id }})
             //     }
             // );
+        },
+        goToTemplate(data, index){
+            this.$router.push({path: `/user/template${index+1}`, query: { uid: data.userId, tid: data.id}})
         }
     },
     data(){
@@ -157,6 +160,10 @@ export default {
                 left: 0;
                 background: $defaultTheme;
                 color: #f4f4f4;
+
+                a {
+                    color: inherit;
+                }
             }
         }
     }
@@ -168,6 +175,7 @@ export default {
         .each-template {
             margin-right: 50px;
             margin-top: 20px;
+
         }
 
         .add-template-in-display {

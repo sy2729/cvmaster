@@ -2,6 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
+//create EventBus
+let eventHub = new Vue();
+Vue.prototype.$eventHub = eventHub;
+
 // fontawesom import and init
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 Vue.component('font-awesome-icon', FontAwesomeIcon)

@@ -4,7 +4,7 @@
             <h1>CV MASTER</h1>
             <v-nav :user = user></v-nav>
         </div>
-        <cv-panel :user = user @add-template="addTemplate"></cv-panel>
+        <cv-panel :user = user @add-template="addTemplate" v-cloak></cv-panel>
     </div>
 </template>
 
@@ -34,12 +34,10 @@ export default {
               query.find().then((data)=>{
                 if(data) {
                     let templates = [];
-                    for(let i = 0; i < data.length; i++) {
-                        let templatesData = {...data[i].attributes, id: data[i].id};
+                    data.forEach((i)=>{
+                        let templatesData = {...i.attributes, id: i.id};
                         templates.push(templatesData);
-                        // this.$set(this.user.templates, i, {...data[i].attributes, id: data[i].id});
-                        //  this.user.templates[i] = {...data[i].attributes, id: data[i].id};
-                    }
+                    })
                     this.$set(this.user, 'templates', templates)
                 }
             });
